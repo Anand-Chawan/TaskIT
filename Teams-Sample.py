@@ -6,10 +6,15 @@ import os
 import json
 from tzlocal import get_localzone
 from zoneinfo import ZoneInfo
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 # === Replace with your Azure app credentials ===
-CLIENT_ID = "client-id"
-TENANT_ID = "tenant-id"
+CLIENT_ID = os.getenv("TEAMS_CLIENT_ID")
+TENANT_ID = os.getenv("TEAMS_TENANT_ID")
+# CLIENT_ID = "client-id"
+# TENANT_ID = "tenant-id"
 AUTHORITY = f"https://login.microsoftonline.com/{TENANT_ID}"
 
 GRAPH_ENDPOINT = 'https://graph.microsoft.com/v1.0/me/calendar/events'

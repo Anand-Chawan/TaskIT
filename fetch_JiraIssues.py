@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-api_token = os.getenv("API_TOKEN")
+api_token = os.getenv("JIRA_API_TOKEN")
 
 
 def filteredJson(issue):

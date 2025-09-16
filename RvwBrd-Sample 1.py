@@ -1,9 +1,14 @@
 import requests
 import json
 import re
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 jira_url = "https://ipo-jira.rbbn.com/jira"
-jira_api_token = "<JIRA-api-token>"
+jira_api_token = os.getenv("JIRA_API_TOKEN")
+# jira_api_token = "<JIRA-api-token>"
 
 jira_headers = {
     "Authorization": f"Bearer {jira_api_token}",
@@ -11,7 +16,9 @@ jira_headers = {
 }
 
 REVIEWBOARD_DOMAIN = "http://revbrd01.ecitele.com/reviews"
-API_TOKEN = "<Review-Board-Token>"
+API_TOKEN = os.getenv("REVIEW_BOARD_API_TOKEN")
+# API_TOKEN = "<Review-Board-Token>"
+
 
 # Headers for authentication and response format
 headers = {
