@@ -43,7 +43,7 @@ This guide **walks** you through the steps to generate API keys or tokens for ac
 
 
 ## 🔗 Using the Token securely in scripts.
-* Create a *.env* File with below details
+* Create a *.env* File with necessary tokens and load it in code
 
 ### 📌 Additional Notes
 *   Tokens may expire or be revoked; regenerate them if needed.
