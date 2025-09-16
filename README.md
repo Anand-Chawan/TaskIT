@@ -1,6 +1,14 @@
 # Prerequisites
 pip install -r requirements.txt
 
+requirements.txt file should contain:
+    fastapi
+	uvicorn
+	python-dotenv
+	requests
+	msal
+	tzlocal
+
 
 # Generating API Keys for Review Board and JIRA
 
