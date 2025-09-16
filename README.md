@@ -19,6 +19,7 @@ This guide **walks** you through the steps to generate API keys or tokens for ac
 7. Provide a name and select the required permissions (e.g., read, write, Full access).
 8. Click "Save".
 9. Copy the generated token and store it securely.
+
 ⚠️ *Note: API tokens are sensitive. Do not share them publicly or commit them to version control.*
 
 
@@ -37,14 +38,12 @@ This guide **walks** you through the steps to generate API keys or tokens for ac
 7. Enter a label (e.g., "Automation Script").
 8. Click "Create".
 9. Copy the token and store it securely.
+
 ⚠️ *Note: API tokens are sensitive. Do not share them publicly or commit them to version control.*
 
 
 ## 🔗 Using the Token securely in scripts.
 * Create a *.env* File with below details
-JIRA_API_TOKEN=<YOUR API-TOKEN HERE>
-REVIEW_BOARD_API_TOKEN=<YOUR API-TOKEN HERE>
-TEAMS_API_TOKEN=<YOUR API-TOKEN HERE>
 
 ### 📌 Additional Notes
 *   Tokens may expire or be revoked; regenerate them if needed.
