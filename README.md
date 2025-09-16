@@ -1,3 +1,7 @@
+# Prerequisites
+pip install -r requirements.txt
+
+
 # Generating API Keys for Review Board and JIRA
 
 ## 🔐 Overview
