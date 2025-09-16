@@ -20,6 +20,7 @@ def filteredJson(issue):
     filtered_item["Stopper"] = issue['fields']['customfield_10007']['value']
     filtered_item["fixVersions"] = issue['fields']['fixVersions'][0]['name']
     filtered_item["priority"] = issue['fields']['priority']['name']
+    filtered_item["duedate"] = issue['fields']['duedate']
     return filtered_item
 
 def printJson(issue):
@@ -33,6 +34,7 @@ def printJson(issue):
     print(f"Stopper: {issue['fields']['customfield_10007']['value']}")
     print(f"fixVersions: {issue['fields']['fixVersions'][0]['name']}")
     print(f"priority: {issue['fields']['priority']['name']}")
+    print(f"duedate: {issue['fields']['duedate']}")
 
 ###################################
 # Redirect output to a log file

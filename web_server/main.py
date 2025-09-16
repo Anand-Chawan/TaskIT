@@ -48,7 +48,8 @@ def filtered_jira_json(issue):
         "reporter": issue['fields']['reporter']['displayName'],
         "Stopper": issue['fields']['customfield_10007']['value'],
         "fixVersions": issue['fields']['fixVersions'][0]['name'] if issue['fields']['fixVersions'] else None,
-        "priority": issue['fields']['priority']['name']
+        "priority": issue['fields']['priority']['name'],
+        "duedate": issue['fields']['duedate']
     }
 
 def extract_tags(description):
