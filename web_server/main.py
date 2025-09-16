@@ -175,11 +175,12 @@ def get_teams_calendar():
         location = event.get("location", {}).get("displayName", "No Location")
         organizer = event.get("organizer", {}).get("emailAddress", {}).get("name", "No Name")
         attendance_type = ""
+        Attendees_list=[]                
         for attendee in event.get("attendees", []):
+            Attendees_list.append(attendee.get("emailAddress", {}).get("name", ""))
             email = attendee.get("emailAddress", {}).get("address", "")
             if email.lower() == my_email.lower():
                 attendance_type = attendee.get("type", "unknown")
-                break
         try:
             start_dt = datetime.fromisoformat(start).replace(tzinfo=timezone.utc).astimezone(local_tz)
             end_dt = datetime.fromisoformat(end).replace(tzinfo=timezone.utc).astimezone(local_tz)
@@ -197,7 +198,8 @@ def get_teams_calendar():
             "date": date_str if not isToday else "Today",
             "location": location,
             "organizer": organizer,
-            "attendance_type": attendance_type
+            "attendance_type": attendance_type,
+            "Attendees_list": Attendees_list
         }
 
     formatted_today = [format_event(e, True) for e in events_today]
