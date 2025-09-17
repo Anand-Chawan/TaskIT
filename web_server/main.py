@@ -38,19 +38,21 @@ CACHE_FILE = "token_cache.json"
 
 # Helper Functions
 def filtered_jira_json(issue):
+    fields = issue.get('fields', {})
     return {
-        "Issue Key": issue['key'],
-        "Summary": issue['fields']['summary'],
-        "issuetype": issue['fields']['issuetype']['name'],
-        "status": issue['fields']['status']['name'],
-        "creator": issue['fields']['creator']['displayName'],
-        "Severity": issue['fields']['customfield_10423']['value'],
-        "reporter": issue['fields']['reporter']['displayName'],
-        "Stopper": issue['fields']['customfield_10007']['value'],
-        "fixVersions": issue['fields']['fixVersions'][0]['name'] if issue['fields']['fixVersions'] else None,
-        "priority": issue['fields']['priority']['name'],
-        "duedate": issue['fields']['duedate']
+        "Issue Key": issue.get('key'),
+        "Summary": fields.get('summary'),
+        "issuetype": fields.get('issuetype', {}).get('name') if fields.get('issuetype') else None,
+        "status": fields.get('status', {}).get('name') if fields.get('status') else None,
+        "creator": fields.get('creator', {}).get('displayName') if fields.get('creator') else None,
+        "Severity": fields['customfield_10423']['value'] if fields.get('customfield_10423') and isinstance(fields.get('customfield_10423'), dict) else None,
+        "reporter": fields.get('reporter', {}).get('displayName') if fields.get('reporter') else None,
+        "Stopper": fields['customfield_10007']['value'] if fields.get('customfield_10007') and isinstance(fields.get('customfield_10007'), dict) else None,
+        "fixVersions": fields['fixVersions'][0]['name'] if fields.get('fixVersions') and len(fields['fixVersions']) > 0 and isinstance(fields['fixVersions'][0], dict) else None,
+        "priority": fields.get('priority', {}).get('name') if fields.get('priority') else None,
+        "duedate": fields.get('duedate')
     }
+
 
 def extract_tags(description):
     if "Jira:" in description and "Fix Description:" in description:
@@ -71,7 +73,7 @@ def get_jira_issues():
     response = requests.get(URL, headers=jira_headers)
     if response.status_code == 200:
         issues = response.json().get('issues', [])
-        filtered_data = [filtered_jira_json(issue) for issue in issues if issue['fields']['issuetype']['name'] == "PR"]
+        filtered_data = [filtered_jira_json(issue) for issue in issues]
         return JSONResponse(content=filtered_data)
     else:
         return JSONResponse(status_code=response.status_code, content={"error": response.text})
